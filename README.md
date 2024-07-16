@@ -171,10 +171,11 @@ with meshio.xdmf.TimeSeriesReader(filename) as reader:
 
 If you have downloaded a binary version of ParaView, you may proceed as follows.
 
-- Install meshio for the Python major version that ParaView uses (check `pvpython --version`)
-- Open ParaView
-- Find the file `paraview-meshio-plugin.py` of your meshio installation (on Linux:
-  `~/.local/share/paraview-5.9/plugins/`) and load it under _Tools / Manage Plugins / Load New_
+- Check the version of Python provided by ParaView: `./bin/pvpython -c "import sys; print(sys.version)"`
+- Install meshio for that Python version in a dedicated directory: `python3 -m pip  install --only-binary=:all: --python-version 3.10.13 --target /path/to/directory meshio`
+- Recover [paraview-meshio-plugin.py](https://github.com/nschloe/meshio/blob/main/tools/paraview-meshio-plugin.py)
+- run ParaView with `PYTHONPATH=/path/to/directory/ ./bin/paraview`
+- In _Tools / Manage Plugins / Load New_, select `paraview-meshio-plugin.py` and load it
 - _Optional:_ Activate _Auto Load_
 
 You can now open all meshio-supported files in ParaView.
