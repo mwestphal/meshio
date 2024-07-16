@@ -82,7 +82,9 @@ class MeshioReader(VTKPythonAlgorithmBase):
         cell_types = np.array([], dtype=np.ubyte)
         cell_offsets = np.array([], dtype=int)
         cell_conn = np.array([], dtype=int)
-        for meshio_type, data in cells:
+        for cellblock in cells:
+            meshio_type = cellblock.type
+            data = cellblock.data
             vtk_type = meshio_to_vtk_type[meshio_type]
             ncells, npoints = data.shape
             cell_types = np.hstack(
